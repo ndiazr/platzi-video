@@ -1,4 +1,12 @@
-const data = (state, action) => {
+import schema from '../schemas/index';
+
+const initialState = {
+  entities: schema.entities,
+  categories: schema.result.categories,
+  search: [],
+}
+
+const data = (state = initialState, action) => {
   switch (action.type) {
     case 'SEARCH_VIDEO': {
       /*const list = state.data.categories[2].playlist;

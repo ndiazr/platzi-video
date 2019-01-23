@@ -1,25 +1,31 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Home from '../pages/containers/Home';
-import data from '../api.json';
+//import data from '../api.json';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import reducer from '../reducers/data';
-import normalizedData from '../schemas/index';
+import reducer from '../reducers/index';
+//import data from '../schemas/index';
 
-console.log(normalizedData);
+//console.log(data);
 
-const initialState = {
+/*const initialState = {
   data: {
-    ...data,
+    //...data,
+    entities: data.entities,
+    categories: data.result.categories,
+    search: [],
   },
-  search: [],
-}
+  modal: {
+    visibility: false,
+    mediaId: null,
+  },
+}*/
 
 const store = createStore(
   reducer,
-  initialState,
+  {},
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
