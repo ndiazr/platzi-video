@@ -13,6 +13,7 @@ const Categories = (props) => {
         props.search.map((item) => {
           return (
             <Media
+              openModal={props.handleOpenModal}
               key={item.get('id')}
               {...item.toJS()}
             />

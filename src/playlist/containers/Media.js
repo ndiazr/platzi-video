@@ -4,9 +4,18 @@ import { connect } from 'react-redux';
 import Media from '../components/Media';
 
 class MediaContainer extends Component {
+  openModal = (id) => {
+    this.props.dispatch({
+      type: 'OPEN_MODAL',
+      payload: {
+        mediaId: id
+      }
+    })
+  }
   render() {
     return (
       <Media
+        openModal={this.openModal}
         {...this.props.data.toJS()}
       />
     )
