@@ -1,39 +1,27 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Home from '../pages/containers/Home';
-//import data from '../api.json';
-
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from '../reducers/index';
 import { Map as map } from 'immutable';
-//import data from '../schemas/index';
 
-//console.log(data);
-
-/*const initialState = {
-  data: {
-    //...data,
-    entities: data.entities,
-    categories: data.result.categories,
-    search: [],
-  },
-  modal: {
-    visibility: false,
-    mediaId: null,
-  },
-}*/
+const logger = ({ getState, dispatch }) => (next) => (action) => {
+  console.log('Estado anterior', getState().toJS());
+  console.log('action', action);
+  const value = next(action);
+  console.log('Nuevo estado', getState().toJS());
+  return value;
+}
 
 const store = createStore(
   reducer,
   map({}),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  applyMiddleware(logger),
+  //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
-//console.log(store.getState());
-
 const homeContainer = document.getElementById('home-container');
-//const holaMundo = <h1>Hola Mundo!</h1>;
 
 render(
   <Provider store={store}>
