@@ -5,19 +5,15 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from '../reducers/index';
 import { Map as map } from 'immutable';
-
-const logger = ({ getState, dispatch }) => (next) => (action) => {
-  console.log('Estado anterior', getState().toJS());
-  console.log('action', action);
-  const value = next(action);
-  console.log('Nuevo estado', getState().toJS());
-  return value;
-}
+import logger from 'redux-logger';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const store = createStore(
   reducer,
   map({}),
-  applyMiddleware(logger),
+  composeWithDevTools(
+    applyMiddleware(logger),
+  )
   //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 
