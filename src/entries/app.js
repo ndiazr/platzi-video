@@ -13,6 +13,7 @@ import Header from '../pages/components/Header';
 import Home from '../pages/components/Home';
 import Contacto from '../pages/components/Contacto';
 import Perfil from '../pages/components/Perfil';
+import NotFound from '../pages/components/NotFound';
 
 const store = createStore(
   reducer,
@@ -37,6 +38,7 @@ render(
         <Route exact path="/videos" component={Videos} />
         <Route exact path="/contacto" component={Contacto} />
         <Route exact path="/perfil" component={Perfil} />
+        <Route component={NotFound} />
       </Fragment>
     </Provider>
   </BrowserRouter>
