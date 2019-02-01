@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { render } from 'react-dom';
-import Home from '../pages/containers/Home';
+import Videos from '../pages/containers/Videos';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from '../reducers/index';
@@ -8,6 +8,11 @@ import { Map as map } from 'immutable';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Header from '../pages/components/Header';
+import Home from '../pages/components/Home';
+import Contacto from '../pages/components/Contacto';
+import Perfil from '../pages/components/Perfil';
 
 const store = createStore(
   reducer,
@@ -24,8 +29,16 @@ const store = createStore(
 const homeContainer = document.getElementById('home-container');
 
 render(
-  <Provider store={store}>
-    <Home />
-  </Provider>
+  <BrowserRouter>
+    <Provider store={store}>
+      <Fragment>
+        <Header />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/videos" component={Videos} />
+        <Route exact path="/contacto" component={Contacto} />
+        <Route exact path="/perfil" component={Perfil} />
+      </Fragment>
+    </Provider>
+  </BrowserRouter>
   , homeContainer
 );

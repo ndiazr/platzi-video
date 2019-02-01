@@ -11,7 +11,7 @@ import { List as list } from 'immutable';
 import * as actions from '../../actions';
 import { bindActionCreators } from 'redux';
 
-class Home extends Component {
+class Videos extends Component {
   handleOpenModal = (id) => {
     this.props.actions.openModal(id)
   }
@@ -82,4 +82,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Videos);
