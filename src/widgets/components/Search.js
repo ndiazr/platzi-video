@@ -1,6 +1,6 @@
 import React from 'react';
-
 import './Search.css';
+import { Prompt } from 'react-router';
 
 const Search = (props) => {
   return (
@@ -8,6 +8,10 @@ const Search = (props) => {
       className="Search"
       onSubmit={props.handleSubmit}
     >
+      <Prompt
+        when={props.prompt}
+        message="¿Estas seguro de querer salir de la pagina?"
+      />
       <input
         ref={props.setRef}
         type="text"
